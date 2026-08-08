@@ -41,6 +41,8 @@ export type GenerationJobMinAggregateOutputType = {
   repositoryId: number | null
   status: string | null
   createdAt: Date | null
+  completedAt: Date | null
+  errorMessage: string | null
 }
 
 export type GenerationJobMaxAggregateOutputType = {
@@ -48,6 +50,8 @@ export type GenerationJobMaxAggregateOutputType = {
   repositoryId: number | null
   status: string | null
   createdAt: Date | null
+  completedAt: Date | null
+  errorMessage: string | null
 }
 
 export type GenerationJobCountAggregateOutputType = {
@@ -55,6 +59,8 @@ export type GenerationJobCountAggregateOutputType = {
   repositoryId: number
   status: number
   createdAt: number
+  completedAt: number
+  errorMessage: number
   _all: number
 }
 
@@ -74,6 +80,8 @@ export type GenerationJobMinAggregateInputType = {
   repositoryId?: true
   status?: true
   createdAt?: true
+  completedAt?: true
+  errorMessage?: true
 }
 
 export type GenerationJobMaxAggregateInputType = {
@@ -81,6 +89,8 @@ export type GenerationJobMaxAggregateInputType = {
   repositoryId?: true
   status?: true
   createdAt?: true
+  completedAt?: true
+  errorMessage?: true
 }
 
 export type GenerationJobCountAggregateInputType = {
@@ -88,6 +98,8 @@ export type GenerationJobCountAggregateInputType = {
   repositoryId?: true
   status?: true
   createdAt?: true
+  completedAt?: true
+  errorMessage?: true
   _all?: true
 }
 
@@ -182,6 +194,8 @@ export type GenerationJobGroupByOutputType = {
   repositoryId: number
   status: string
   createdAt: Date
+  completedAt: Date | null
+  errorMessage: string | null
   _count: GenerationJobCountAggregateOutputType | null
   _avg: GenerationJobAvgAggregateOutputType | null
   _sum: GenerationJobSumAggregateOutputType | null
@@ -212,6 +226,8 @@ export type GenerationJobWhereInput = {
   repositoryId?: Prisma.IntFilter<"GenerationJob"> | number
   status?: Prisma.StringFilter<"GenerationJob"> | string
   createdAt?: Prisma.DateTimeFilter<"GenerationJob"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"GenerationJob"> | Date | string | null
+  errorMessage?: Prisma.StringNullableFilter<"GenerationJob"> | string | null
   repository?: Prisma.XOR<Prisma.RepositoryScalarRelationFilter, Prisma.RepositoryWhereInput>
   readme?: Prisma.XOR<Prisma.GeneratedReadmeNullableScalarRelationFilter, Prisma.GeneratedReadmeWhereInput> | null
 }
@@ -221,6 +237,8 @@ export type GenerationJobOrderByWithRelationInput = {
   repositoryId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  errorMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   repository?: Prisma.RepositoryOrderByWithRelationInput
   readme?: Prisma.GeneratedReadmeOrderByWithRelationInput
   _relevance?: Prisma.GenerationJobOrderByRelevanceInput
@@ -234,6 +252,8 @@ export type GenerationJobWhereUniqueInput = Prisma.AtLeast<{
   repositoryId?: Prisma.IntFilter<"GenerationJob"> | number
   status?: Prisma.StringFilter<"GenerationJob"> | string
   createdAt?: Prisma.DateTimeFilter<"GenerationJob"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"GenerationJob"> | Date | string | null
+  errorMessage?: Prisma.StringNullableFilter<"GenerationJob"> | string | null
   repository?: Prisma.XOR<Prisma.RepositoryScalarRelationFilter, Prisma.RepositoryWhereInput>
   readme?: Prisma.XOR<Prisma.GeneratedReadmeNullableScalarRelationFilter, Prisma.GeneratedReadmeWhereInput> | null
 }, "id">
@@ -243,6 +263,8 @@ export type GenerationJobOrderByWithAggregationInput = {
   repositoryId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  errorMessage?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.GenerationJobCountOrderByAggregateInput
   _avg?: Prisma.GenerationJobAvgOrderByAggregateInput
   _max?: Prisma.GenerationJobMaxOrderByAggregateInput
@@ -258,11 +280,15 @@ export type GenerationJobScalarWhereWithAggregatesInput = {
   repositoryId?: Prisma.IntWithAggregatesFilter<"GenerationJob"> | number
   status?: Prisma.StringWithAggregatesFilter<"GenerationJob"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"GenerationJob"> | Date | string
+  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"GenerationJob"> | Date | string | null
+  errorMessage?: Prisma.StringNullableWithAggregatesFilter<"GenerationJob"> | string | null
 }
 
 export type GenerationJobCreateInput = {
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
   repository: Prisma.RepositoryCreateNestedOneWithoutJobsInput
   readme?: Prisma.GeneratedReadmeCreateNestedOneWithoutJobInput
 }
@@ -270,14 +296,18 @@ export type GenerationJobCreateInput = {
 export type GenerationJobUncheckedCreateInput = {
   id?: number
   repositoryId: number
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
   readme?: Prisma.GeneratedReadmeUncheckedCreateNestedOneWithoutJobInput
 }
 
 export type GenerationJobUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repository?: Prisma.RepositoryUpdateOneRequiredWithoutJobsNestedInput
   readme?: Prisma.GeneratedReadmeUpdateOneWithoutJobNestedInput
 }
@@ -287,19 +317,25 @@ export type GenerationJobUncheckedUpdateInput = {
   repositoryId?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readme?: Prisma.GeneratedReadmeUncheckedUpdateOneWithoutJobNestedInput
 }
 
 export type GenerationJobCreateManyInput = {
   id?: number
   repositoryId: number
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
 }
 
 export type GenerationJobUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type GenerationJobUncheckedUpdateManyInput = {
@@ -307,6 +343,8 @@ export type GenerationJobUncheckedUpdateManyInput = {
   repositoryId?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type GenerationJobListRelationFilter = {
@@ -330,6 +368,8 @@ export type GenerationJobCountOrderByAggregateInput = {
   repositoryId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
+  errorMessage?: Prisma.SortOrder
 }
 
 export type GenerationJobAvgOrderByAggregateInput = {
@@ -342,6 +382,8 @@ export type GenerationJobMaxOrderByAggregateInput = {
   repositoryId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
+  errorMessage?: Prisma.SortOrder
 }
 
 export type GenerationJobMinOrderByAggregateInput = {
@@ -349,6 +391,8 @@ export type GenerationJobMinOrderByAggregateInput = {
   repositoryId?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
+  errorMessage?: Prisma.SortOrder
 }
 
 export type GenerationJobSumOrderByAggregateInput = {
@@ -403,6 +447,10 @@ export type GenerationJobUncheckedUpdateManyWithoutRepositoryNestedInput = {
   deleteMany?: Prisma.GenerationJobScalarWhereInput | Prisma.GenerationJobScalarWhereInput[]
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type GenerationJobCreateNestedOneWithoutReadmeInput = {
   create?: Prisma.XOR<Prisma.GenerationJobCreateWithoutReadmeInput, Prisma.GenerationJobUncheckedCreateWithoutReadmeInput>
   connectOrCreate?: Prisma.GenerationJobCreateOrConnectWithoutReadmeInput
@@ -418,15 +466,19 @@ export type GenerationJobUpdateOneRequiredWithoutReadmeNestedInput = {
 }
 
 export type GenerationJobCreateWithoutRepositoryInput = {
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
   readme?: Prisma.GeneratedReadmeCreateNestedOneWithoutJobInput
 }
 
 export type GenerationJobUncheckedCreateWithoutRepositoryInput = {
   id?: number
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
   readme?: Prisma.GeneratedReadmeUncheckedCreateNestedOneWithoutJobInput
 }
 
@@ -464,19 +516,25 @@ export type GenerationJobScalarWhereInput = {
   repositoryId?: Prisma.IntFilter<"GenerationJob"> | number
   status?: Prisma.StringFilter<"GenerationJob"> | string
   createdAt?: Prisma.DateTimeFilter<"GenerationJob"> | Date | string
+  completedAt?: Prisma.DateTimeNullableFilter<"GenerationJob"> | Date | string | null
+  errorMessage?: Prisma.StringNullableFilter<"GenerationJob"> | string | null
 }
 
 export type GenerationJobCreateWithoutReadmeInput = {
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
   repository: Prisma.RepositoryCreateNestedOneWithoutJobsInput
 }
 
 export type GenerationJobUncheckedCreateWithoutReadmeInput = {
   id?: number
   repositoryId: number
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
 }
 
 export type GenerationJobCreateOrConnectWithoutReadmeInput = {
@@ -498,6 +556,8 @@ export type GenerationJobUpdateToOneWithWhereWithoutReadmeInput = {
 export type GenerationJobUpdateWithoutReadmeInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   repository?: Prisma.RepositoryUpdateOneRequiredWithoutJobsNestedInput
 }
 
@@ -506,17 +566,23 @@ export type GenerationJobUncheckedUpdateWithoutReadmeInput = {
   repositoryId?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type GenerationJobCreateManyRepositoryInput = {
   id?: number
-  status: string
+  status?: string
   createdAt?: Date | string
+  completedAt?: Date | string | null
+  errorMessage?: string | null
 }
 
 export type GenerationJobUpdateWithoutRepositoryInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readme?: Prisma.GeneratedReadmeUpdateOneWithoutJobNestedInput
 }
 
@@ -524,6 +590,8 @@ export type GenerationJobUncheckedUpdateWithoutRepositoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   readme?: Prisma.GeneratedReadmeUncheckedUpdateOneWithoutJobNestedInput
 }
 
@@ -531,6 +599,8 @@ export type GenerationJobUncheckedUpdateManyWithoutRepositoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  errorMessage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -540,6 +610,8 @@ export type GenerationJobSelect<ExtArgs extends runtime.Types.Extensions.Interna
   repositoryId?: boolean
   status?: boolean
   createdAt?: boolean
+  completedAt?: boolean
+  errorMessage?: boolean
   repository?: boolean | Prisma.RepositoryDefaultArgs<ExtArgs>
   readme?: boolean | Prisma.GenerationJob$readmeArgs<ExtArgs>
 }, ExtArgs["result"]["generationJob"]>
@@ -551,9 +623,11 @@ export type GenerationJobSelectScalar = {
   repositoryId?: boolean
   status?: boolean
   createdAt?: boolean
+  completedAt?: boolean
+  errorMessage?: boolean
 }
 
-export type GenerationJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "repositoryId" | "status" | "createdAt", ExtArgs["result"]["generationJob"]>
+export type GenerationJobOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "repositoryId" | "status" | "createdAt" | "completedAt" | "errorMessage", ExtArgs["result"]["generationJob"]>
 export type GenerationJobInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   repository?: boolean | Prisma.RepositoryDefaultArgs<ExtArgs>
   readme?: boolean | Prisma.GenerationJob$readmeArgs<ExtArgs>
@@ -570,6 +644,8 @@ export type $GenerationJobPayload<ExtArgs extends runtime.Types.Extensions.Inter
     repositoryId: number
     status: string
     createdAt: Date
+    completedAt: Date | null
+    errorMessage: string | null
   }, ExtArgs["result"]["generationJob"]>
   composites: {}
 }
@@ -945,6 +1021,8 @@ export interface GenerationJobFieldRefs {
   readonly repositoryId: Prisma.FieldRef<"GenerationJob", 'Int'>
   readonly status: Prisma.FieldRef<"GenerationJob", 'String'>
   readonly createdAt: Prisma.FieldRef<"GenerationJob", 'DateTime'>
+  readonly completedAt: Prisma.FieldRef<"GenerationJob", 'DateTime'>
+  readonly errorMessage: Prisma.FieldRef<"GenerationJob", 'String'>
 }
     
 

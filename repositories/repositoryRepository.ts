@@ -27,4 +27,10 @@ const upsertRepository = async (data: UpsertRepositoryInput) => {
   });
 };
 
-export default upsertRepository;
+const findById = async (id: number) => {
+  return await prisma.repository.findUnique({
+    where: { id },
+  });
+};
+
+export default { upsertRepository, findById };

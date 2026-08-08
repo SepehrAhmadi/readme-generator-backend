@@ -89,7 +89,9 @@ export const GenerationJobScalarFieldEnum = {
   id: 'id',
   repositoryId: 'repositoryId',
   status: 'status',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  completedAt: 'completedAt',
+  errorMessage: 'errorMessage'
 } as const
 
 export type GenerationJobScalarFieldEnum = (typeof GenerationJobScalarFieldEnum)[keyof typeof GenerationJobScalarFieldEnum]
@@ -135,7 +137,8 @@ export type RepositoryOrderByRelevanceFieldEnum = (typeof RepositoryOrderByRelev
 
 
 export const GenerationJobOrderByRelevanceFieldEnum = {
-  status: 'status'
+  status: 'status',
+  errorMessage: 'errorMessage'
 } as const
 
 export type GenerationJobOrderByRelevanceFieldEnum = (typeof GenerationJobOrderByRelevanceFieldEnum)[keyof typeof GenerationJobOrderByRelevanceFieldEnum]

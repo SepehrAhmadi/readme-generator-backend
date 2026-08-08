@@ -1,5 +1,5 @@
-import getRepoMetadata from "../clients/githubClient.ts";
-import upsertRepository from "../repositories/repositoryRepository.ts";
+import githubClient from "../clients/githubClient.ts";
+import repositoryRepository from "../repositories/repositoryRepository.ts";
 
 interface CreateOrUpdateRepositoryInput {
   githubUrl: string;
@@ -16,9 +16,9 @@ const createOrUpdateRepository = async ({
 }: CreateOrUpdateRepositoryInput) => {
   const { owner, name, fullName } = parseGithubUrl(githubUrl);
 
-  const metadata = await getRepoMetadata(owner, name);
+  const metadata = await githubClient.getRepoMetadata(owner, name);
 
-  const repository = await upsertRepository({
+  const repository = await repositoryRepository.upsertRepository({
     owner,
     name,
     fullName,
