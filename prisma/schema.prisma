@@ -11,7 +11,7 @@ model Repository {
   id              Int             @id @default(autoincrement())
   owner           String
   name            String
-  fullNmae        String          @unique
+  fullName        String          @unique
   description     String?         @db.Text
   primaryLanguage String?
   createdAt       DateTime        @default(now())

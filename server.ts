@@ -3,8 +3,8 @@ import express, { type Express } from 'express';
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import path from "path";
-import corsOptions from "./config/corsOptions";
-import routes from "./routes/index";
+import corsOptions from "./config/corsOptions.ts";
+import routes from "./routes/index.ts";
 
 const app: Express = express();
 

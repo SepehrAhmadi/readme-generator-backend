@@ -38,7 +38,7 @@ export type RepositoryMinAggregateOutputType = {
   id: number | null
   owner: string | null
   name: string | null
-  fullNmae: string | null
+  fullName: string | null
   description: string | null
   primaryLanguage: string | null
   createdAt: Date | null
@@ -48,7 +48,7 @@ export type RepositoryMaxAggregateOutputType = {
   id: number | null
   owner: string | null
   name: string | null
-  fullNmae: string | null
+  fullName: string | null
   description: string | null
   primaryLanguage: string | null
   createdAt: Date | null
@@ -58,7 +58,7 @@ export type RepositoryCountAggregateOutputType = {
   id: number
   owner: number
   name: number
-  fullNmae: number
+  fullName: number
   description: number
   primaryLanguage: number
   createdAt: number
@@ -78,7 +78,7 @@ export type RepositoryMinAggregateInputType = {
   id?: true
   owner?: true
   name?: true
-  fullNmae?: true
+  fullName?: true
   description?: true
   primaryLanguage?: true
   createdAt?: true
@@ -88,7 +88,7 @@ export type RepositoryMaxAggregateInputType = {
   id?: true
   owner?: true
   name?: true
-  fullNmae?: true
+  fullName?: true
   description?: true
   primaryLanguage?: true
   createdAt?: true
@@ -98,7 +98,7 @@ export type RepositoryCountAggregateInputType = {
   id?: true
   owner?: true
   name?: true
-  fullNmae?: true
+  fullName?: true
   description?: true
   primaryLanguage?: true
   createdAt?: true
@@ -195,7 +195,7 @@ export type RepositoryGroupByOutputType = {
   id: number
   owner: string
   name: string
-  fullNmae: string
+  fullName: string
   description: string | null
   primaryLanguage: string | null
   createdAt: Date
@@ -228,7 +228,7 @@ export type RepositoryWhereInput = {
   id?: Prisma.IntFilter<"Repository"> | number
   owner?: Prisma.StringFilter<"Repository"> | string
   name?: Prisma.StringFilter<"Repository"> | string
-  fullNmae?: Prisma.StringFilter<"Repository"> | string
+  fullName?: Prisma.StringFilter<"Repository"> | string
   description?: Prisma.StringNullableFilter<"Repository"> | string | null
   primaryLanguage?: Prisma.StringNullableFilter<"Repository"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Repository"> | Date | string
@@ -239,7 +239,7 @@ export type RepositoryOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   owner?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  fullNmae?: Prisma.SortOrder
+  fullName?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   primaryLanguage?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -249,7 +249,7 @@ export type RepositoryOrderByWithRelationInput = {
 
 export type RepositoryWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  fullNmae?: string
+  fullName?: string
   AND?: Prisma.RepositoryWhereInput | Prisma.RepositoryWhereInput[]
   OR?: Prisma.RepositoryWhereInput[]
   NOT?: Prisma.RepositoryWhereInput | Prisma.RepositoryWhereInput[]
@@ -259,13 +259,13 @@ export type RepositoryWhereUniqueInput = Prisma.AtLeast<{
   primaryLanguage?: Prisma.StringNullableFilter<"Repository"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Repository"> | Date | string
   jobs?: Prisma.GenerationJobListRelationFilter
-}, "id" | "fullNmae">
+}, "id" | "fullName">
 
 export type RepositoryOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   owner?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  fullNmae?: Prisma.SortOrder
+  fullName?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   primaryLanguage?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -283,7 +283,7 @@ export type RepositoryScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Repository"> | number
   owner?: Prisma.StringWithAggregatesFilter<"Repository"> | string
   name?: Prisma.StringWithAggregatesFilter<"Repository"> | string
-  fullNmae?: Prisma.StringWithAggregatesFilter<"Repository"> | string
+  fullName?: Prisma.StringWithAggregatesFilter<"Repository"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Repository"> | string | null
   primaryLanguage?: Prisma.StringNullableWithAggregatesFilter<"Repository"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Repository"> | Date | string
@@ -292,7 +292,7 @@ export type RepositoryScalarWhereWithAggregatesInput = {
 export type RepositoryCreateInput = {
   owner: string
   name: string
-  fullNmae: string
+  fullName: string
   description?: string | null
   primaryLanguage?: string | null
   createdAt?: Date | string
@@ -303,7 +303,7 @@ export type RepositoryUncheckedCreateInput = {
   id?: number
   owner: string
   name: string
-  fullNmae: string
+  fullName: string
   description?: string | null
   primaryLanguage?: string | null
   createdAt?: Date | string
@@ -313,7 +313,7 @@ export type RepositoryUncheckedCreateInput = {
 export type RepositoryUpdateInput = {
   owner?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  fullNmae?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -324,7 +324,7 @@ export type RepositoryUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   owner?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  fullNmae?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -335,7 +335,7 @@ export type RepositoryCreateManyInput = {
   id?: number
   owner: string
   name: string
-  fullNmae: string
+  fullName: string
   description?: string | null
   primaryLanguage?: string | null
   createdAt?: Date | string
@@ -344,7 +344,7 @@ export type RepositoryCreateManyInput = {
 export type RepositoryUpdateManyMutationInput = {
   owner?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  fullNmae?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -354,7 +354,7 @@ export type RepositoryUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   owner?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  fullNmae?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -370,7 +370,7 @@ export type RepositoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   owner?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  fullNmae?: Prisma.SortOrder
+  fullName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   primaryLanguage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -384,7 +384,7 @@ export type RepositoryMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   owner?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  fullNmae?: Prisma.SortOrder
+  fullName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   primaryLanguage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -394,7 +394,7 @@ export type RepositoryMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   owner?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  fullNmae?: Prisma.SortOrder
+  fullName?: Prisma.SortOrder
   description?: Prisma.SortOrder
   primaryLanguage?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -446,7 +446,7 @@ export type RepositoryUpdateOneRequiredWithoutJobsNestedInput = {
 export type RepositoryCreateWithoutJobsInput = {
   owner: string
   name: string
-  fullNmae: string
+  fullName: string
   description?: string | null
   primaryLanguage?: string | null
   createdAt?: Date | string
@@ -456,7 +456,7 @@ export type RepositoryUncheckedCreateWithoutJobsInput = {
   id?: number
   owner: string
   name: string
-  fullNmae: string
+  fullName: string
   description?: string | null
   primaryLanguage?: string | null
   createdAt?: Date | string
@@ -481,7 +481,7 @@ export type RepositoryUpdateToOneWithWhereWithoutJobsInput = {
 export type RepositoryUpdateWithoutJobsInput = {
   owner?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  fullNmae?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -491,7 +491,7 @@ export type RepositoryUncheckedUpdateWithoutJobsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   owner?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  fullNmae?: Prisma.StringFieldUpdateOperationsInput | string
+  fullName?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   primaryLanguage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -532,7 +532,7 @@ export type RepositorySelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   id?: boolean
   owner?: boolean
   name?: boolean
-  fullNmae?: boolean
+  fullName?: boolean
   description?: boolean
   primaryLanguage?: boolean
   createdAt?: boolean
@@ -546,13 +546,13 @@ export type RepositorySelectScalar = {
   id?: boolean
   owner?: boolean
   name?: boolean
-  fullNmae?: boolean
+  fullName?: boolean
   description?: boolean
   primaryLanguage?: boolean
   createdAt?: boolean
 }
 
-export type RepositoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "owner" | "name" | "fullNmae" | "description" | "primaryLanguage" | "createdAt", ExtArgs["result"]["repository"]>
+export type RepositoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "owner" | "name" | "fullName" | "description" | "primaryLanguage" | "createdAt", ExtArgs["result"]["repository"]>
 export type RepositoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   jobs?: boolean | Prisma.Repository$jobsArgs<ExtArgs>
   _count?: boolean | Prisma.RepositoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -567,7 +567,7 @@ export type $RepositoryPayload<ExtArgs extends runtime.Types.Extensions.Internal
     id: number
     owner: string
     name: string
-    fullNmae: string
+    fullName: string
     description: string | null
     primaryLanguage: string | null
     createdAt: Date
@@ -944,7 +944,7 @@ export interface RepositoryFieldRefs {
   readonly id: Prisma.FieldRef<"Repository", 'Int'>
   readonly owner: Prisma.FieldRef<"Repository", 'String'>
   readonly name: Prisma.FieldRef<"Repository", 'String'>
-  readonly fullNmae: Prisma.FieldRef<"Repository", 'String'>
+  readonly fullName: Prisma.FieldRef<"Repository", 'String'>
   readonly description: Prisma.FieldRef<"Repository", 'String'>
   readonly primaryLanguage: Prisma.FieldRef<"Repository", 'String'>
   readonly createdAt: Prisma.FieldRef<"Repository", 'DateTime'>

@@ -76,7 +76,7 @@ export const RepositoryScalarFieldEnum = {
   id: 'id',
   owner: 'owner',
   name: 'name',
-  fullNmae: 'fullNmae',
+  fullName: 'fullName',
   description: 'description',
   primaryLanguage: 'primaryLanguage',
   createdAt: 'createdAt'
@@ -126,7 +126,7 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 export const RepositoryOrderByRelevanceFieldEnum = {
   owner: 'owner',
   name: 'name',
-  fullNmae: 'fullNmae',
+  fullName: 'fullName',
   description: 'description',
   primaryLanguage: 'primaryLanguage'
 } as const

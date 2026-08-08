@@ -3,12 +3,12 @@ CREATE TABLE `Repository` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `owner` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
-    `fullNmae` VARCHAR(191) NOT NULL,
+    `fullName` VARCHAR(191) NOT NULL,
     `description` TEXT NULL,
     `primaryLanguage` VARCHAR(191) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
-    UNIQUE INDEX `Repository_fullNmae_key`(`fullNmae`),
+    UNIQUE INDEX `Repository_fullName_key`(`fullName`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
