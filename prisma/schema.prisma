@@ -1,8 +1,38 @@
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output   = "./generated/prisma"
 }
 
 datasource db {
   provider = "mysql"
+}
+
+model Repository {
+  id              Int             @id @default(autoincrement())
+  owner           String
+  name            String
+  fullNmae        String          @unique
+  description     String?         @db.Text
+  primaryLanguage String?
+  createdAt       DateTime        @default(now())
+  jobs            GenerationJob[]
+}
+
+model GenerationJob {
+  id              Int                @id @default(autoincrement())
+  repository      Repository         @relation(fields: [repositoryId], references: [id])
+  repositoryId    Int
+  status          String
+  createdAt       DateTime           @default(now())
+  readme          GeneratedReadme?
+}
+
+model GeneratedReadme {
+  id          Int           @id @default(autoincrement())
+  job         GenerationJob @relation(fields: [jobId], references: [id])
+  jobId       Int           @unique
+  content     String        @db.LongText
+  totalTokens Int
+  modelUsed   String
+  createdAt   DateTime      @default(now())
 }
