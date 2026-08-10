@@ -5,4 +5,6 @@ const router = Router();
 
 router.get("/:id/generate", generationJobController.startGeneration);
 
+router.get("/:jobId", generationJobController.getJobStatus);
+
 export default router;

@@ -9,6 +9,15 @@ interface RepoMetadata {
   defaultBranch: string;
 }
 
+const stripMarkdownFence = (text: string): string => {
+  const trimmed = text.trim();
+  const fenceMatch = trimmed.match(/^```(?:markdown|md)?\n([\s\S]*?)\n```$/);
+  if (fenceMatch) {
+    return fenceMatch[1].trim();
+  }
+  return trimmed;
+};
+
 const generateReadme = async (
   owner: string,
   name: string,
@@ -30,10 +39,12 @@ const generateReadme = async (
   });
 
   const systemPrompt = `You are an expert technical writer generating a README.md file for a GitHub repository.
-You will be given the repository's metadata and its file tree.
-If you need to see the contents of a specific file to understand the project better, use the getFileContent tool — but only for files that are truly essential (like dependency manifests or the main entry point). Do not read every file.
-When you have enough information, write a complete, well-structured README in Markdown format, including sections like: project title, description, installation, usage, and any other relevant sections based on what you learn.`;
+  You will be given the repository's metadata and its file tree.
+  If you need to see the contents of a specific file to understand the project better, use the getFileContent tool — but only for files that are truly essential (like dependency manifests or the main entry point). Do not read every file.
+  When you have enough information, write a complete, well-structured README in Markdown format, including sections like: project title, description, installation, usage, and any other relevant sections based on what you learn.
 
+  IMPORTANT: Return ONLY the raw README content as plain text. Do NOT wrap your output in a markdown code fence (no triple backticks, no "\`\`\`markdown" at the start or "\`\`\`" at the end). Start your response directly with the title heading, e.g. "# Project Name".`;
+  
   const prompt = `Repository metadata:
 - Description: ${metadata.description ?? "N/A"}
 - Primary language: ${metadata.primaryLanguage ?? "N/A"}
@@ -54,7 +65,7 @@ Generate a README.md for this repository.`;
   });
 
   return {
-    content: text,
+    content: stripMarkdownFence(text),
     totalTokens: usage.totalTokens ?? 0,
   };
 };

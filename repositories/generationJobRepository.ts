@@ -25,6 +25,7 @@ const markCompleted = async (jobId: number) => {
       status: "completed",
       completedAt: new Date(),
     },
+    include: { readme: true },
   });
 };
 
@@ -42,6 +43,7 @@ const markFailed = async (jobId: number, errorMessage: string) => {
 const findById = async (jobId: number) => {
   return await prisma.generationJob.findUnique({
     where: { id: jobId },
+    include: { readme: true },
   });
 };
 

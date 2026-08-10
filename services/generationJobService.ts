@@ -6,12 +6,12 @@ import readmeGenerationService from "./readmeGenerationService";
 
 const startGeneration = async (repositoryId: number) => {
   console.log(`Starting generation for repository ${repositoryId}`);
-  const job = await generationJobRepository.create({ repositoryId });
+  let job = await generationJobRepository.create({ repositoryId });
 
   const repository = await repositoryRepository.findById(repositoryId);
 
   if (!repository) {
-    await generationJobRepository.markFailed(job.id, "Repository not found");
+    job = await generationJobRepository.markFailed(job.id, "Repository not found");
     return job;
   }
 
@@ -23,7 +23,7 @@ const startGeneration = async (repositoryId: number) => {
       repository.name
     );
 
-    console.log(`Fetching file tree for repository ${repositoryId}`);
+    console.log(`Fetching metadata for repository ${repositoryId}`);
     await generationJobRepository.updateStatus(job.id, "fetching_file_tree");
     const fileTree = await githubClient.getRepoFileTree(
       repository.owner,
@@ -41,7 +41,6 @@ const startGeneration = async (repositoryId: number) => {
       fileTree
     );
 
-    console.log(`Saving README for repository ${repositoryId}`);
     await generatedReadmeRepository.create({
       jobId: job.id,
       content,
@@ -50,14 +49,18 @@ const startGeneration = async (repositoryId: number) => {
     });
 
     console.log(`Marking job as completed for repository ${repositoryId}`);
-    await generationJobRepository.markCompleted(job.id);
+    job = await generationJobRepository.markCompleted(job.id);
 
     return job;
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    await generationJobRepository.markFailed(job.id, message);
+    job = await generationJobRepository.markFailed(job.id, message);
     throw error;
   }
 };
 
-export default { startGeneration };
+const getJobById = async (jobId: number) => {
+  return await generationJobRepository.findById(jobId);
+};
+
+export default { startGeneration, getJobById };
